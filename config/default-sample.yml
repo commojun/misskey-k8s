@@ -1,0 +1,12 @@
+url: https://domain/
+db:
+  host: db
+  port: 5432
+  db: misskey
+  user: misskey
+  pass: hogehoge
+redis:
+  host: redis
+  port: 6379
+id: 'aid'
+port: 80
