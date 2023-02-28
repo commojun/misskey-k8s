@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  namespace: misskey
+spec:
+  selector:
+    app: redis
+  ports:
+  - name: http
+    port: 6379
+
+---
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-misskey-redis
+  namespace: misskey
+spec:
+  storageClassName: misskey-redis
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  nfs:
+    server: 192.168.10.41
+    path: /home/commojun/nfs/misskey/redis
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-misskey-redis
+  namespace: misskey
+spec:
+  storageClassName: misskey-redis
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis
+  namespace: misskey
+  labels:
+    app: redis
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+              - pi41
+  restartPolicy: Always
+  containers:
+  - name: redis
+    image: redis:7
+    volumeMounts:
+    - mountPath: /data
+      name: redis-volume
+    ports:
+    - containerPort: 6379
+  volumes:
+  - name: redis-volume
+    persistentVolumeClaim:
+      claimName: pvc-misskey-redis
+
