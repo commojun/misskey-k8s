@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  namespace: misskey
+spec:
+  selector:
+    app: db
+  ports:
+  - name: http
+    port: 5432
+
+---
+
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-misskey-db
+  namespace: misskey
+spec:
+  storageClassName: misskey-db
+  capacity:
+    storage: 4Gi
+  accessModes:
+  - ReadWriteOnce
+  nfs:
+    server: 192.168.10.41
+    path: /home/commojun/nfs/misskey/db
+
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-misskey-db
+  namespace: misskey
+spec:
+  storageClassName: misskey-db
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: db
+  namespace: misskey
+  labels:
+    app: db
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+              - pi41
+  restartPolicy: Always
+  containers:
+  - name: psql
+    image: postgres:
+    volumeMounts:
+    - mountPath: /var/lib/postgresql/data
+      name: db-volume
+    envFrom:
+      - secretRef:
+          name: misskey-secret
+    ports:
+    - containerPort: 5432
+  volumes:
+  - name: db-volume
+    persistentVolumeClaim:
+      claimName: pvc-misskey-db
+
