@@ -1,5 +1,10 @@
+.PHONY: config
+
 pods:
 	kubectl get pods --watch
+
+config:
+	scp config/default.yml pi41:/home/commojun/nfs/misskey/config/default.yml
 
 secret:
 	-kubectl delete secret misskey-secret
