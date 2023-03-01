@@ -1,7 +1,7 @@
 .PHONY: config
 
 pods:
-	kubectl get pods --watch
+	kubectl get pods -o wide --watch
 
 config:
 	scp config/default.yml pi41:/home/commojun/nfs/misskey/config/default.yml
