@@ -9,8 +9,8 @@ spec:
     app: web
   ports:
   - name: http
-    port: 80
-    targetPort: 80
+    port: 3000
+    targetPort: 3000
     nodePort: 30080
 
 ---
@@ -114,7 +114,10 @@ spec:
         - mountPath: /misskey/.config
           name: misskey-config
         ports:
-        - containerPort: 80
+        - containerPort: 3000
+        resources:
+          limits:
+            memory: "200Mi"
       volumes:
       - name: misskey-files
         persistentVolumeClaim:
