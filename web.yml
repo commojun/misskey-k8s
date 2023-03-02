@@ -102,7 +102,7 @@ spec:
             nodeSelectorTerms:
             - matchExpressions:
                 - key: kubernetes.io/hostname
-                  operator: In
+                  operator: NotIn
                   values:
                     - pi41
       containers:
@@ -117,7 +117,7 @@ spec:
         - containerPort: 3000
         resources:
           limits:
-            memory: "3Gi"
+            memory: "500Mi"
       volumes:
       - name: misskey-files
         persistentVolumeClaim:
