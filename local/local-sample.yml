@@ -1,0 +1,12 @@
+url: https://domain/
+db:
+  host: host.docker.internal
+  port: 5432
+  db: misskey
+  user: misskey
+  pass: hogehoge
+redis:
+  host: host.docker.internal
+  port: 6379
+id: 'aid'
+port: 3000

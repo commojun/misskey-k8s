@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  web:
+    image: misskey/misskey:13
+    #command: ["sleep", "infinity"]
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ${PWD}/files:/misskey/files
+      - ${PWD}/local.yml:/misskey/.config/default.yml
