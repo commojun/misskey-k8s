@@ -1,2 +1,5 @@
 envfile
 default.yml
+local.yml
+local/files/*
+!dummy
