@@ -10,3 +10,18 @@ redis:
   port: 6379
 id: 'aid'
 port: 80
+
+# Number of worker processes
+clusterLimit: 1
+
+# Job concurrency per worker
+deliverJobConcurrency: 32
+inboxJobConcurrency: 16
+
+# Job rate limiter
+deliverJobPerSec: 32
+inboxJobPerSec: 16
+
+# Job attempts
+deliverJobMaxAttempts: 12
+inboxJobMaxAttempts: 8
