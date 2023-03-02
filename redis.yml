@@ -58,9 +58,9 @@ spec:
         nodeSelectorTerms:
         - matchExpressions:
           - key: kubernetes.io/hostname
-            operator: NotIn
+            operator: In
             values:
-              - pi41
+              - pi31
   restartPolicy: Always
   containers:
   - name: redis
@@ -70,8 +70,8 @@ spec:
       name: redis-volume
     resources:
       limits:
-        memory: "300Mi"
-        cpu: "300m"
+        memory: "100Mi"
+        cpu: "500m"
     ports:
     - containerPort: 6379
   volumes:

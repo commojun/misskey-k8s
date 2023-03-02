@@ -58,9 +58,9 @@ spec:
         nodeSelectorTerms:
         - matchExpressions:
           - key: kubernetes.io/hostname
-            operator: NotIn
+            operator: In
             values:
-              - pi41
+              - pi31
   restartPolicy: Always
   containers:
   - name: psql
@@ -74,7 +74,7 @@ spec:
     resources:
       limits:
         memory: "600Mi"
-        cpu: "500m"
+        cpu: "2"
     ports:
     - containerPort: 5432
   volumes:
