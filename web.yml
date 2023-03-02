@@ -87,7 +87,7 @@ metadata:
   labels:
     deploy: web
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: web
@@ -117,7 +117,8 @@ spec:
         - containerPort: 3000
         resources:
           limits:
-            memory: "500Mi"
+            memory: "600Mi"
+            cpu: "500m"
       volumes:
       - name: misskey-files
         persistentVolumeClaim:

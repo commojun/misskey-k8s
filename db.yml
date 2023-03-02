@@ -58,7 +58,7 @@ spec:
         nodeSelectorTerms:
         - matchExpressions:
           - key: kubernetes.io/hostname
-            operator: In
+            operator: NotIn
             values:
               - pi41
   restartPolicy: Always
@@ -71,6 +71,10 @@ spec:
     envFrom:
       - secretRef:
           name: misskey-secret
+    resources:
+      limits:
+        memory: "600Mi"
+        cpu: "500m"
     ports:
     - containerPort: 5432
   volumes:
