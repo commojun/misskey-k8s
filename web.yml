@@ -88,6 +88,11 @@ metadata:
     deploy: web
 spec:
   replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: "50%"
+      maxSurge: "50%"
   selector:
     matchLabels:
       app: web
@@ -102,9 +107,10 @@ spec:
             nodeSelectorTerms:
             - matchExpressions:
                 - key: kubernetes.io/hostname
-                  operator: NotIn
+                  operator: In
                   values:
-                    - pi41
+                    - pi32
+                    - pi33
       containers:
       - name: web
         image: misskey/misskey:latest
@@ -117,8 +123,9 @@ spec:
         - containerPort: 3000
         resources:
           limits:
-            memory: "600Mi"
-            cpu: "500m"
+            memory: "700Mi"
+            cpu: "2"
+        command: ["pnpm", "run", "start"]
       volumes:
       - name: misskey-files
         persistentVolumeClaim:
