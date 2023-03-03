@@ -9,6 +9,8 @@ misskeyをおうちkubernetesで構築する
 - pi31: dbとredis
 - pi32,33: web
 
+raspberry pi3 はメモリが1GBしかないので割当を工夫する
+
 ## 事前準備
 
 - [k0s-cluster](https://github.com/commojun/k0s-cluster)のようにしてk8sのクラスタが準備できていること
