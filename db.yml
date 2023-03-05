@@ -60,7 +60,7 @@ spec:
           - key: kubernetes.io/hostname
             operator: In
             values:
-              - pi31
+              - pi41
   restartPolicy: Always
   containers:
   - name: psql
@@ -73,8 +73,8 @@ spec:
           name: misskey-secret
     resources:
       limits:
-        memory: "600Mi"
-        cpu: "2"
+        memory: "800Mi"
+        cpu: "1"
     ports:
     - containerPort: 5432
   volumes:
