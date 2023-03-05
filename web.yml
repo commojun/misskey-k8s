@@ -87,11 +87,11 @@ metadata:
   labels:
     deploy: web
 spec:
-  replicas: 2
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: "50%"
+      maxUnavailable: "75%"
       maxSurge: "50%"
   selector:
     matchLabels:
@@ -109,6 +109,7 @@ spec:
                 - key: kubernetes.io/hostname
                   operator: In
                   values:
+                    - pi31
                     - pi32
                     - pi33
       containers:
