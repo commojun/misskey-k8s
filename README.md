@@ -6,8 +6,8 @@ misskeyをおうちkubernetesで構築する
 ## 方針
 
 それぞれのコンテナは以下のノードに割り当てられるようにする
-- pi31: dbとredis
-- pi32,33: web
+- pi41: dbとredis
+- pi31,32,33: web
 
 raspberry pi3 はメモリが1GBしかないので割当を工夫する
 
