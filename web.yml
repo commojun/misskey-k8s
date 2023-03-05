@@ -123,7 +123,6 @@ spec:
         - containerPort: 3000
         resources:
           limits:
-            memory: "700Mi"
             cpu: "2"
         command: ["pnpm", "run", "start"]
       volumes:
