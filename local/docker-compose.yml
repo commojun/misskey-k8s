@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  web:
-    image: misskey/misskey:13
-    #command: ["sleep", "infinity"]
+  migration:
+    image: misskey/misskey:latest
+    command: ["pnpm", "run", "init"]
     restart: always
     ports:
       - "3000:3000"
