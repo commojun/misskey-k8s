@@ -4,7 +4,6 @@ services:
   migration:
     image: misskey/misskey:latest
     command: ["pnpm", "run", "init"]
-    restart: always
     ports:
       - "3000:3000"
     volumes:
