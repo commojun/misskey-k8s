@@ -114,7 +114,7 @@ spec:
                     - pi33
       containers:
       - name: web
-        image: misskey/misskey:13.11.2
+        image: misskey/misskey:13.11.3
         volumeMounts:
         - mountPath: /misskey/files
           name: misskey-files
@@ -131,6 +131,8 @@ spec:
             path: /
             port: 3000
             scheme: HTTP
+          initialDelaySeconds: 600
+          periodSeconds: 30
       volumes:
       - name: misskey-files
         persistentVolumeClaim:
