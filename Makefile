@@ -13,10 +13,13 @@ secret:
 		--from-env-file ./envfile
 
 logs/%:
-	kubectl logs --timestamps=true --prefix=true -f -l app=$*
+	kubectl logs --timestamps=true --prefix=true --max-log-requests=9999 --ignore-errors -f -l app=$*
 
 logs-all:
-	kubectl logs --timestamps=true --prefix=true -f -l app
+	kubectl logs --timestamps=true --prefix=true --max-log-requests=9999 --ignore-errors --prefix=true -f -l app
 
 shell/%:
 	kubectl exec -it $* -- bash
+
+clean:
+	kubectl delete pods --field-selector=status.phase=Failed

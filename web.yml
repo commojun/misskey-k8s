@@ -114,7 +114,7 @@ spec:
                     - pi33
       containers:
       - name: web
-        image: misskey/misskey:13.14.2
+        image: misskey/misskey:2023.12.0
         volumeMounts:
         - mountPath: /misskey/files
           name: misskey-files
