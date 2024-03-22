@@ -1,3 +1,4 @@
 POSTGRES_PASSWORD=hogehoge
 POSTGRES_USER=misskey
 POSTGRES_DB=misskey
+TUNNEL_TOKEN=hoge
