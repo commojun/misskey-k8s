@@ -115,7 +115,7 @@ spec:
 #                    - pi33
       containers:
       - name: web
-        image: misskey/misskey:2025.4.0
+        image: misskey/misskey:2026.5.0
         volumeMounts:
         - mountPath: /misskey/files
           name: misskey-files
@@ -123,7 +123,6 @@ spec:
           name: misskey-config
         ports:
         - containerPort: 3000
-        command: ["pnpm", "run", "start"]
         readinessProbe:
           httpGet:
             path: /
