@@ -8,8 +8,8 @@ config:
 
 secret:
 	-kubectl delete secret misskey-secret
-	kubectl create secret generic \
-		--save-config misskey-secret \
+	kubectl create secret generic misskey-secret \
+		--save-config -n misskey \
 		--from-env-file ./envfile
 
 logs/%:
