@@ -115,7 +115,7 @@ spec:
 #                    - pi33
       containers:
       - name: web
-        image: misskey/misskey:2026.5.0
+        image: misskey/misskey:2026.5.4
         volumeMounts:
         - mountPath: /misskey/files
           name: misskey-files
