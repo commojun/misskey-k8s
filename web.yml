@@ -88,6 +88,7 @@ metadata:
     deploy: web
 spec:
   replicas: 1
+  progressDeadlineSeconds: 1800
 #  strategy:
 #    type: RollingUpdate
 #    rollingUpdate:
@@ -128,8 +129,9 @@ spec:
             path: /
             port: 3000
             scheme: HTTP
-          initialDelaySeconds: 600
-          periodSeconds: 30
+          initialDelaySeconds: 30
+          periodSeconds: 15
+          failureThreshold: 3
       volumes:
       - name: misskey-files
         persistentVolumeClaim:
